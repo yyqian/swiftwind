@@ -1,0 +1,31 @@
+<style type="text/css">
+#post-list {
+  margin: 30px 0 30px 0;
+}
+#post-list .nav-tabs a {
+  color: #555;
+}
+.list-group .first-child {
+  border-top: 0px;
+}
+</style>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+      <div class="list-group" id="post-list">
+        <ul class="nav nav-tabs">
+          <li role="presentation" class="<%= category ? '' : 'active' %>"><a href="/post">所有</a></li>
+          <% for(var i=0; i < config.post.categories.length; i++) { %>
+            <li role="presentation" class="<%= category === config.post.categories[i].id ? 'active' : '' %>"><a href="/post?category=<%= config.post.categories[i].id %>"><%= config.post.categories[i].name %></a></li>
+          <% } %>
+        </ul>
+        <% if (posts.length !== 0) { %>
+        <% for(var i=0; i < posts.length; i++) {%>
+          <a href="/post/<%= posts[i].pid %>" class="list-group-item<%= i===0 ? " first-child": "" %>" ><%= posts[i].title %></a>
+        <% }} else { %>
+          <p href="" class="list-group-item first-child">暂无此类文章<p>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</div>

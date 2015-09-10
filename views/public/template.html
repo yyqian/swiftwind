@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title><%= config.site.name %></title>
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<style type="text/css">
+html {overflow-x: hidden;}
+#menu {
+  border: 0;
+  background-color: #eee;
+  overflow-x: hidden;
+}
+.menu-nav a, 
+.menu-nav a:link,
+.menu-nav a:visited {
+  color: #666;
+  text-decoration: none;
+}
+.menu-nav a:hover,
+.menu-nav a:active {
+  color: #101010;
+  text-decoration: none;
+}
+.menu-footer {display: none;}
+@media screen and (min-width: 768px) {
+  #menu {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 100%;
+    overflow-y: auto;
+  }
+  .menu-logo {padding: 100px 30px 40px 30px;}
+  .menu-nav {padding: 0 0 0 30px;}
+  .menu-nav ul {padding: 0;}
+  .menu-nav li {line-height: 1.75em;}
+  .menu-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block;
+  }
+  .menu-copyright {
+    margin: 0;
+    padding: 0 0 20px 30px;
+    font-size: 12px;
+    color: #aaa;
+  }
+  #content {margin-left: 200px;}
+}
+@media screen and (max-width: 768px) {
+  #menu {position: relative;}
+  .menu-logo {
+    display: inline-block;
+    margin-left: 15px;
+  }
+  .menu-nav {
+    display: inline-block;
+    position: absolute;
+    right: 15px;
+    bottom: 8px;
+  }
+  .menu-nav ul.list-unstyled {
+    padding-left: 0;
+    list-style: none;
+    margin: 0
+  }
+  .menu-nav ul.list-unstyled > li {
+    display: inline-block;
+    padding-right: 0;
+    padding-left: 15px;
+  }
+}
+</style>
+</head>
+<body>
+  <div id="menu">
+    <div class="menu-logo">
+      <h5><%= config.site.name %></h5>
+    </div>
+    <nav class="menu-nav">
+      <ul class="list-unstyled">
+        <% for(var i=0; i < config.site.links.length; i++) { %>
+          <li><a href="<%= config.site.links[i].url %>" <%= config.site.links[i].newtab ? "target='_blank'" : "" %>><%= config.site.links[i].name %></a></li>
+        <% } %>
+      </ul>
+    </nav>
+    <div class="menu-footer">
+      <p class="menu-copyright"><%= config.site.copyright %></p>
+    </div>
+  </div>
+  <div id="content">
+    <%- body %>
+  </div>
+</body>
+</html>

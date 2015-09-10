@@ -1,7 +1,7 @@
 'use strict';
 process.env.NODE_ENV = 'test';
-var app = require('../app.js');
-var request = require('supertest').agent(app.listen());
+let app = require('../app.js');
+let request = require('supertest').agent(app.listen());
 
 describe('PostController', function () {
   describe('create', function () {

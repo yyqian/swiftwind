@@ -2,48 +2,66 @@
 process.chdir(__dirname);
 
 //koa base
-var koa = require('koa');
-var app = koa();
+let koa = require('koa');
+let app = koa();
 
 //import middlewares
-var favicon = require('koa-favicon');
-var logger = require('koa-logger');
-var serve = require('koa-static');
-var route = require('koa-route');
+let favicon = require('koa-favicon');
+let logger = require('koa-logger');
+let serve = require('koa-static');
+let route = require('koa-route');
+let render = require('koa-ejs');
+let etag = require('koa-etag');
+let fresh = require('koa-fresh');
+let gzip = require('koa-gzip');
+let path = require('path');
 
 //Controllers
-var PageController = require('./controllers/PageController');
-var PostController = require('./controllers/PostController');
+let PageController = require('./controllers/PageController');
+let PostController = require('./controllers/PostController');
 
 //configs
-var config = require('./config');
+let config = require('./config');
 app.name = config.app.name || 'imagine';
 app.env = process.env.NODE_ENV || 'development';
 const port =  config.app.port || process.env.PORT || 3000;
 const db_url = config.db[app.env];
 
 //database
-var mongoose  = require('mongoose');
+let mongoose  = require('mongoose');
 mongoose.connect(db_url);
 
+//render
+render(app, {
+  root: path.join(__dirname, 'views'),
+  layout: false,
+  viewExt: 'html',
+  cache: ("development" === app.env) ? false : true,
+  debug: ("development" === app.env) ? true : false
+});
+
 //use middlewares
-app.use(favicon(__dirname + '/public/favicon.ico')); //middleware for serving a favicon
-if (app.env !== 'test') {
+app.use(gzip()); //compress the content
+app.use(fresh()); //check whether to refresh the content based on the etag
+app.use(etag()); //generate a etag 
+app.use(favicon(path.join(__dirname, 'public/favicon.ico'))); //middleware for serving a favicon
+if ('development' === app.env) {
   app.use(logger()); //Development style logging middleware
 }
-app.use(serve(__dirname + '/public')); //Static file server middleware
+app.use(serve(path.join(__dirname, 'public'), {maxage: ("production" === app.env) ?  24 * 60 * 60 * 1000 : 0})); //Static file server middleware
 
-//routes
+//routes, front-end
 app.use(route.get('/', PageController.index));
-app.use(route.get('/post', PostController.list));
-app.use(route.get('/post/:id', PostController.read));
+app.use(route.get('/post', PageController.index));
+app.use(route.get('/post/:id', PageController.post));
+//routes, back-end
 app.use(route.post('/post', PostController.create));
 app.use(route.put('/post/:id', PostController.update));
 app.use(route.delete('/post/:id', PostController.delete));
 
 //listen & start
 app.listen(port);
-console.log('***--START--***');
+console.log('***--|START|--***');
 console.log('Server time: ' + (new Date).toLocaleString());
 console.log('Listening on port: ' + port);
 

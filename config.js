@@ -1,14 +1,11 @@
 module.exports = {
   site: {
-    name: "YYQIAN",
+    name: "IMAGINE",
     url: "127.0.0.1",
-    author: "Yinyin Qian",
-    description: "Yinyin Qian Blog",
-    keywords: "Yinyin Qian, yyqian",
-    copyright: "© 2015 yyqian.com",
-    username: "demo",
-    password: "123123",
-    secret: "demo",
+    copyright: "© 2015 imagine",
+    username: "imagine",
+    password: "imagine",
+    secret: "imagine",
     links: [{
       name: "博客",
       url: "/post"
@@ -25,7 +22,7 @@ module.exports = {
   post: {
     author: "Yinyin Qian",
     categories: [{
-      id: "technology",
+      id: "tech",
       name: "技术",
     }, {
       id: "life",

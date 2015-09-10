@@ -1,7 +1,7 @@
 'use strict';
-var mongoose  = require('mongoose');
+let mongoose  = require('mongoose');
 
-var PostSchema = mongoose.Schema({
+let PostSchema = mongoose.Schema({
   pid:        {type: String, default: Date.now(), unique: true, index: true},
   created_at: {type: Date, default: Date.now()},
   updated_at: {type: Date, default: Date.now()},

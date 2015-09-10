@@ -1,8 +1,8 @@
 'use strict';
-var Post = require('../models/Post');
-var markdown = require('markdown-it')({breaks: true});
-var config = require('../config');
-var parse = require('co-body');
+let Post = require('../models/Post');
+let markdown = require('markdown-it')({breaks: true});
+let config = require('../config');
+let parse = require('co-body');
 
 module.exports = {
   create: function*() {
