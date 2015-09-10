@@ -2,11 +2,10 @@
 let Post = require('../models/Post');
 let markdown = require('markdown-it')({breaks: true});
 let config = require('../config');
-let parse = require('co-body');
 
 module.exports = {
   create: function*() {
-    let req = yield parse(this);
+    let req = this.request.body;
     let timestamp = Date.now();
     let data = {
       title     : req.title,
@@ -39,7 +38,7 @@ module.exports = {
     this.body   = posts;
   },
   update: function*(id) {
-    let req = yield parse(this);
+    let req = this.request.body;
     let data = {};
     if (req.markdown) {
       data.markdown   = req.markdown;
