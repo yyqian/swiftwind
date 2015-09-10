@@ -1,0 +1,78 @@
+<style type="text/css">
+#post-editor {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+#delete-post {
+  float: right;
+}
+</style>
+<div class="col-xs-12 col-md-10 col-md-offset-1" id="post-editor">
+  <form>
+    <% if (typeof post === "object") { %>
+    <div class="form-group">
+      <label for="post-id">文章ID:</label>
+      <label id="post-id"><%= post.pid %></label>
+    </div>
+    <% } %>
+    <div class="form-group">
+      <label for="post-title">文章标题</label>
+      <input name="title" id="post-title" type="text" class="form-control" placeholder="请输入标题" value="<%= typeof post === "object" ? post.title : "" %>" required autofocus>
+    </div>
+    <div class="form-group">
+      <label for="post-markdown">文章内容</label>
+      <textarea name="markdown" id="post-markdown" class="form-control" rows="25" required><%= typeof post === "object" ? post.markdown : "" %></textarea>
+    </div>
+    <div class="form-group">
+      <label>文章分类</label>
+      <select name="category" id="post-category">
+        <% for (var i=0; i < site.categories.length; i++) {%>
+          <option value="<%= site.categories[i].id %>" <%= (typeof post === "object" ? (post.category === site.categories[i].id) : false) ? 'selected': '' %>><%= site.categories[i].name %></option>
+        <% } %>
+      </select>
+      <% if (typeof post === "object") { %>
+      <button id="delete-post" type="button" class="btn btn-danger btn-xs">删除</button>
+      <% } %>
+    </div>
+    <button id="submit-post" type="button" class="btn btn-primary btn-lg btn-block">发布</button>
+  </form>
+</div>
+<script type="text/javascript">
+$(document).ready(function () {
+  $("#submit-post").click(function () {
+    var data = {
+      title: $("#post-title").val(),
+      markdown: $("#post-markdown").val(),
+      category: $("#post-category").val(),
+    };
+    if ($("#post-id").length !== 0) {
+      $.ajax({
+        url: "/api/post/" + $("#post-id").text(),
+        type: 'put',
+        data: data,
+        success: function (res) {
+          location.href = "/imagine";
+        }
+      });
+    } else {
+      $.ajax({
+        url: "/api/post",
+        type: 'post',
+        data: data,
+        success: function (res) {
+          location.href = "/imagine";
+        }
+      });
+    }
+  });
+  $("#delete-post").click(function () {
+    $.ajax({
+      url: "/api/post/" + $("#post-id").text(),
+      type: 'DELETE',
+      success: function (res) {
+        location.href = "/imagine";
+      }
+    });
+  });
+});
+</script>

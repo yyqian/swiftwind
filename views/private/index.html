@@ -1,0 +1,54 @@
+
+<style type="text/css">
+#dashboard {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+#post {
+  border: 1px solid #ddd;
+  padding: 30px;
+}
+.post-title {
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+}
+.post-footer {
+  padding: 20px 0 0 0;
+  color: #aaa;
+}
+.post-footer a {
+  color: #555;
+}
+.post-info {
+  float: right;
+}
+</style>
+<div class="container-fluid" id="dashboard">
+  <div class="row">
+    <div class="col-xs-4">
+      <div class="list-group" id="post-list">
+        <% if (posts.length !== 0) { %>
+        <% for(var i=0; i < posts.length; i++) {%>
+          <a href="/imagine/post/<%= posts[i].pid %>" class="list-group-item<%= i===0 ? " first-child": "" %>" ><%= posts[i].title %></a>
+        <% }} else { %>
+          <p href="" class="list-group-item first-child">暂无此类文章<p>
+        <% } %>
+      </div>
+    </div>
+    <% if (typeof post === 'object') { %>
+    <div class="col-xs-8">
+      <div id="post">
+        <a href="/imagine/post-editor/<%= post.pid %>">编辑文章</a>
+        <h1 class="post-title"><%= post.title %></h1>
+        <div class="post-content"><%- post.html %></div>
+        <div class="post-footer">
+          <div class="post-info">
+            <span class="post-author"><%= site.author %></span>
+            <span class="post-date"><%= post.created_at.toLocaleDateString() %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% } %>
+  </div>
+</div>

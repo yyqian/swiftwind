@@ -31,6 +31,9 @@ module.exports = {
   },
   list: function*() {
     let query = {};
+    if (this.query && this.query.category) {
+      query.category = this.query.category;
+    }
     let posts = yield Post.find(query, {_id: 0, title: 1, pid: 1}, {sort: {created_at: -1}}).exec();
     this.status = 200;
     this.body   = posts;

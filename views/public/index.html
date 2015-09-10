@@ -15,8 +15,8 @@
       <div class="list-group" id="post-list">
         <ul class="nav nav-tabs">
           <li role="presentation" class="<%= category ? '' : 'active' %>"><a href="/post">所有</a></li>
-          <% for(var i=0; i < config.post.categories.length; i++) { %>
-            <li role="presentation" class="<%= category === config.post.categories[i].id ? 'active' : '' %>"><a href="/post?category=<%= config.post.categories[i].id %>"><%= config.post.categories[i].name %></a></li>
+          <% for(var i=0; i < site.categories.length; i++) { %>
+            <li role="presentation" class="<%= category === site.categories[i].id ? 'active' : '' %>"><a href="/post?category=<%= site.categories[i].id %>"><%= site.categories[i].name %></a></li>
           <% } %>
         </ul>
         <% if (posts.length !== 0) { %>

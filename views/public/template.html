@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title><%= config.site.name %></title>
+<title><%= site.name %></title>
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <style type="text/css">
 html {overflow-x: hidden;}
@@ -80,17 +80,17 @@ html {overflow-x: hidden;}
 <body>
   <div id="menu">
     <div class="menu-logo">
-      <h5><%= config.site.name %></h5>
+      <h5><%= site.name %></h5>
     </div>
     <nav class="menu-nav">
       <ul class="list-unstyled">
-        <% for(var i=0; i < config.site.links.length; i++) { %>
-          <li><a href="<%= config.site.links[i].url %>" <%= config.site.links[i].newtab ? "target='_blank'" : "" %>><%= config.site.links[i].name %></a></li>
+        <% for(var i=0; i < site.links.length; i++) { %>
+          <li><a href="<%= site.links[i].url %>" <%= site.links[i].newtab ? "target='_blank'" : "" %>><%= site.links[i].name %></a></li>
         <% } %>
       </ul>
     </nav>
     <div class="menu-footer">
-      <p class="menu-copyright"><%= config.site.copyright %></p>
+      <p class="menu-copyright"><%= site.copyright %></p>
     </div>
   </div>
   <div id="content">

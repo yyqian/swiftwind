@@ -14,11 +14,18 @@ let render = require('koa-ejs');
 let etag = require('koa-etag');
 let fresh = require('koa-fresh');
 let gzip = require('koa-gzip');
+
+//common stuff
 let path = require('path');
+let mongoose  = require('mongoose');
 
 //Controllers
 let PageController = require('./controllers/PageController');
 let PostController = require('./controllers/PostController');
+let AuthController = require('./controllers/AuthController');
+
+//Middlewares
+let authenticate = require('./middlewares/AuthMiddleware');
 
 //configs
 let config = require('./config');
@@ -27,11 +34,7 @@ app.env = process.env.NODE_ENV || 'development';
 const port =  config.app.port || process.env.PORT || 3000;
 const db_url = config.db[app.env];
 
-//database
-let mongoose  = require('mongoose');
-mongoose.connect(db_url);
-
-//render
+//render configs
 render(app, {
   root: path.join(__dirname, 'views'),
   layout: false,
@@ -40,24 +43,51 @@ render(app, {
   debug: ("development" === app.env) ? true : false
 });
 
+//connet database
+mongoose.connect(db_url);
+
 //use middlewares
 app.use(gzip()); //compress the content
 app.use(fresh()); //check whether to refresh the content based on the etag
-app.use(etag()); //generate a etag 
+app.use(etag()); //generate a etag
 app.use(favicon(path.join(__dirname, 'public/favicon.ico'))); //middleware for serving a favicon
 if ('development' === app.env) {
   app.use(logger()); //Development style logging middleware
 }
-app.use(serve(path.join(__dirname, 'public'), {maxage: ("production" === app.env) ?  24 * 60 * 60 * 1000 : 0})); //Static file server middleware
+app.use(serve(path.join(__dirname, 'public'), {maxage: ('production' === app.env) ?  24 * 60 * 60 * 1000 : 0})); //Static file server middleware
 
 //routes, front-end
 app.use(route.get('/', PageController.index));
 app.use(route.get('/post', PageController.index));
 app.use(route.get('/post/:id', PageController.post));
+
 //routes, back-end
-app.use(route.post('/post', PostController.create));
-app.use(route.put('/post/:id', PostController.update));
-app.use(route.delete('/post/:id', PostController.delete));
+app.use(route.get('/login', function*() {yield this.render('login')}));
+//For passport
+let bodyParser = require('koa-bodyparser');
+app.use(bodyParser());
+let session = require('koa-session');
+app.keys = [config.site.secret];
+app.use(session(app));
+require('./auth');//setting
+let passport = require('koa-passport');
+app.use(passport.initialize());
+app.use(passport.session());
+//login & logout
+app.use(route.post('/login', AuthController.login));
+app.use(route.get('/logout', AuthController.logout));
+// Require authentication for now
+app.use(authenticate());
+app.use(route.get('/imagine', PageController.imagineIndex));
+app.use(route.get('/imagine/post', PageController.imagineIndex));
+app.use(route.get('/imagine/post/:id', PageController.imaginePost));
+app.use(route.get('/imagine/post-editor/:id', PageController.imaginePostEditor));
+//API, used for ajax request
+app.use(route.get('/api/post', PostController.list));
+app.use(route.get('/api/post/:id', PostController.read));
+app.use(route.post('/api/post', PostController.create));
+app.use(route.put('/api/post/:id', PostController.update));
+app.use(route.delete('/api/post/:id', PostController.delete));
 
 //listen & start
 app.listen(port);
