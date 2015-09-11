@@ -2,6 +2,18 @@
 
 A blogging paltform. Based on koa, es6.
 
-Dedicated to John Lennon.
+It's fully functional right now. You can checkout my own [blog](http://yyqian.com/).
 
-**I'm still working on this.**
+Pre-requisite:
+
+- Node.js v4.0.0
+- MongoDB 3.0
+
+TODO:
+
+- do the testing
+- use React.js to rewrite the backend
+- add session store
+- build a demo
+- modify the router layer
+- maybe write a turtorial based on this project in the future
