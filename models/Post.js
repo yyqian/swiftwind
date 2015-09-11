@@ -8,8 +8,8 @@ let PostSchema = mongoose.Schema({
   title:      {type: String},
   markdown:   {type: String},
   html:       {type: String},
-  category:   {type: String},
-  status:     {type: String},
+  category:   {type: String, default: ''},
+  status:     {type: String, default: 'published'},
   tags:       [String]
 });
 

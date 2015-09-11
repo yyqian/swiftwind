@@ -34,7 +34,14 @@
       <button id="delete-post" type="button" class="btn btn-danger btn-xs">删除</button>
       <% } %>
     </div>
-    <button id="submit-post" type="button" class="btn btn-primary btn-lg btn-block">发布</button>
+    <div class="form-group">
+      <label>文章状态</label>
+      <select name="status" id="post-status">
+        <option value="published">公开</option>
+        <option value="hidden" <%= (typeof post === "object") ? (("hidden" === (post && post.status)) ? 'selected' : '') : '' %>>隐藏</option>
+      </select>
+    </div>
+    <button id="submit-post" type="button" class="btn btn-primary btn-lg btn-block"><%= (typeof post === "object") ? "更新" : "发布" %></button>
   </form>
 </div>
 <script type="text/javascript">
@@ -44,6 +51,7 @@ $(document).ready(function () {
       title: $("#post-title").val(),
       markdown: $("#post-markdown").val(),
       category: $("#post-category").val(),
+      status: $("#post-status").val()
     };
     if ($("#post-id").length !== 0) {
       $.ajax({
