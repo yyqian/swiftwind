@@ -6,8 +6,8 @@ module.exports = {
     successRedirect: '/imagine',
     failureRedirect: '/login'
   }),
-  logout: function*() {
+  logout: function *() {
     this.logout();
     this.redirect('/');
   }
-}
+};

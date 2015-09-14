@@ -1,3 +1,4 @@
+'use strict';
 module.exports = {
   site: {
     name: 'IMAGINE',
@@ -9,7 +10,7 @@ module.exports = {
     links: [{
       name: '博客',
       url: '/post'
-    },{
+    }, {
       name: '摄影',
       url: '#',
       newtab: true
@@ -17,10 +18,10 @@ module.exports = {
     author: 'Yinyin Qian',
     categories: [{
       id: 'tech',
-      name: '技术',
+      name: '技术'
     }, {
       id: 'life',
-      name: '生活',
+      name: '生活'
     }]
   },
   app: {
@@ -28,8 +29,8 @@ module.exports = {
     port: 3000
   },
   db: {
-    production:  'mongodb://localhost/imagine',
+    production: 'mongodb://localhost/imagine',
     development: 'mongodb://localhost/imagine_dev',
-    test:        'mongodb://localhost/imagine_test'
-  },
+    test: 'mongodb://localhost/imagine_test'
+  }
 };

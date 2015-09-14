@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function () {
-  return function*(next) {
+  return function *(next) {
     if (this.isAuthenticated()) {
       yield next;
     } else {

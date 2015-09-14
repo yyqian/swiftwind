@@ -10,7 +10,7 @@ describe('PostController', function () {
       .post('/post')
       .expect(201)
       .end(function (err, res) {
-        if (err) return done(err);
+        if (err) { return done(err); }
         res.body.should.have.properties(['id', 'title', 'content', 'created_at']);
         done();
       });
@@ -22,7 +22,7 @@ describe('PostController', function () {
       .get('/post/0')
       .expect(200)
       .end(function (err, res) {
-        if (err) return done(err);
+        if (err) { return done(err); }
         res.body.should.have.properties(['id', 'title', 'content', 'created_at']);
         done();
       });
@@ -34,7 +34,7 @@ describe('PostController', function () {
       .get('/post')
       .expect(200)
       .end(function (err, res) {
-        if (err) return done(err);
+        if (err) { return done(err); }
         res.body[0].should.have.properties(['id', 'title', 'content', 'created_at']);
         done();
       });
@@ -46,14 +46,14 @@ describe('PostController', function () {
       .put('/post/0')
       .expect(201)
       .end(function (err, res) {
-        if (err) return done(err);
+        if (err) { return done(err); }
         res.text.should.equal('update');
         done();
       });
     });
   });
   describe('delete', function () {
-    it('should be able to delete a post', function (done){
+    it('should be able to delete a post', function (done) {
       request
       .delete('/post/0')
       .expect(204, done);
