@@ -65,7 +65,10 @@ app.use(route.get('/post/:id', PageController.post));
 app.use(route.get('/login', function *() { yield this.render('login'); }));
 // For passport
 let bodyParser = require('koa-bodyparser');
-app.use(bodyParser());
+app.use(bodyParser({
+  formLimit: '10mb',
+  jsonLimit: '10mb'
+}));
 let session = require('koa-session');
 app.keys = [config.site.secret];
 app.use(session(app));
