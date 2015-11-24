@@ -39,8 +39,8 @@ render(app, {
   root: path.join(__dirname, 'views'),
   layout: false,
   viewExt: 'html',
-  cache: ('development' === app.env) ? false : true,
-  debug: ('development' === app.env) ? true : false
+  cache: ('development' !== app.env),
+  debug: ('development' === app.env)
 });
 
 // connet database

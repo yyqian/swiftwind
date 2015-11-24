@@ -4,7 +4,7 @@
   "description": "A blogging paltform. Based on koa, es6.",
   "main": "app.js",
   "scripts": {
-    "start": "NODE_ENV=production pm2 start app.js",
+    "start": "nodemon app.js",
     "test": "mocha test/app.test.js"
   },
   "repository": {
@@ -18,10 +18,10 @@
   },
   "homepage": "https://github.com/yyqian/imagine#readme",
   "dependencies": {
-    "koa": "^1.0.0",
+    "koa": "^1.1.2",
     "koa-bodyparser": "^2.0.1",
     "koa-ejs": "^2.0.1",
-    "koa-etag": "^2.0.0",
+    "koa-etag": "^2.1.0",
     "koa-favicon": "^1.2.0",
     "koa-fresh": "0.0.3",
     "koa-gzip": "^0.1.0",
@@ -29,9 +29,9 @@
     "koa-passport": "^1.2.0",
     "koa-route": "^2.4.2",
     "koa-session": "^3.3.1",
-    "koa-static": "^1.4.9",
+    "koa-static": "^1.5.2",
     "markdown-it": "^4.4.0",
-    "mongoose": "^4.1.6",
+    "mongoose": "^4.2.7",
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
