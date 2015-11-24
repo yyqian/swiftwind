@@ -16,7 +16,9 @@ module.exports = {
     };
     let optParams = ['category', 'status', 'tags'];
     optParams.forEach(function (param) {
-      if (req[param]) { data[param] = req[param]; }
+      if (req[param]) {
+        data[param] = req[param];
+      }
     });
     let post = yield Post.create(data);
     this.status = 201;
@@ -46,7 +48,9 @@ module.exports = {
     }
     let optParams = ['title', 'category', 'status', 'tags'];
     optParams.forEach(function (param) {
-      if (req[param]) { data[param] = req[param]; }
+      if (req[param]) {
+        data[param] = req[param];
+      }
     });
     let post = yield Post.findOneAndUpdate({pid: id}, data).exec();
     this.status = 201;

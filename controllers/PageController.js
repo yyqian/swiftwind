@@ -27,7 +27,13 @@ module.exports = {
     });
   },
   imagineIndex: function *() {
-    let posts = yield Post.find({}, {_id: 0, title: 1, pid: 1, category: 1, status: 1}, {sort: {created_at: -1}}).exec();
+    let posts = yield Post.find({}, {
+      _id: 0,
+      title: 1,
+      pid: 1,
+      category: 1,
+      status: 1
+    }, {sort: {created_at: -1}}).exec();
     yield this.render('private/index', {
       posts: posts,
       site: config.site,
@@ -36,7 +42,13 @@ module.exports = {
   },
   imaginePost: function *(id) {
     let post = yield Post.findOne({pid: id}, {_id: 0, __v: 0}).exec();
-    let posts = yield Post.find({}, {_id: 0, title: 1, pid: 1, category: 1, status: 1}, {sort: {created_at: -1}}).exec();
+    let posts = yield Post.find({}, {
+      _id: 0,
+      title: 1,
+      pid: 1,
+      category: 1,
+      status: 1
+    }, {sort: {created_at: -1}}).exec();
     yield this.render('private/index', {
       post: post,
       posts: posts,

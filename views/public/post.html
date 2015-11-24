@@ -1,43 +1,67 @@
 <style type="text/css">
-#post {
-  margin: 30px 0 30px 0;
-  border: 1px solid #ddd;
-  padding: 50px;
-}
-.post-title {
-  border-bottom: 2px solid #ddd;
-  padding-bottom: 10px;
-}
-.post-footer {
-  padding: 20px 0 0 0;
-  color: #aaa;
-}
-.post-footer a {color: #555;}
-.post-footer a:hover {
-  color: #333;
-  text-decoration: none;
-}
-.post-info {float: right;}
-@media screen and (max-width: 768px) {
   #post {
-    padding: 0;
-    border: 0;
-    margin: 15px 0 15px 0;
+    margin: 30px 0 30px 0;
+    border: 1px solid #ddd;
+    padding: 50px;
   }
-  #post h1 {font-size: 22px;}
-  #post h2 {font-size: 20px;}
-  #post h3 {font-size: 18px;}
-  #post h4 {font-size: 16px;}
-}
+
+  .post-title {
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+  }
+
+  .post-footer {
+    padding: 20px 0 0 0;
+    color: #aaa;
+  }
+
+  .post-footer a {
+    color: #555;
+  }
+
+  .post-footer a:hover {
+    color: #333;
+    text-decoration: none;
+  }
+
+  .post-info {
+    float: right;
+  }
+
+  @media screen and (max-width: 768px) {
+    #post {
+      padding: 0;
+      border: 0;
+      margin: 15px 0 15px 0;
+    }
+
+    #post h1 {
+      font-size: 22px;
+    }
+
+    #post h2 {
+      font-size: 20px;
+    }
+
+    #post h3 {
+      font-size: 18px;
+    }
+
+    #post h4 {
+      font-size: 16px;
+    }
+  }
 </style>
 <div class="container-fluid">
   <div class="row">
     <div class="col-xs-12 col-md-10 col-md-offset-1">
       <div id="post">
         <h1 class="post-title"><%= post.title %></h1>
+
         <div class="post-content"><%- post.html %></div>
         <div class="post-footer">
           <a href="/post">返回列表</a>
+
           <div class="post-info">
             <span class="post-author"><%= site.author %></span>
             <span class="post-date"><%= post.created_at.toLocaleDateString() %></span>

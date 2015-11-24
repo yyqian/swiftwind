@@ -24,7 +24,9 @@ let createPost = function (json) {
 };
 
 fs.readFile('./light.json', 'utf8', function (err, data) {
-  if (err) { throw err; }
+  if (err) {
+    throw err;
+  }
   let posts = JSON.parse(data);
   mongoose.connect(config.db.production);
   let db = mongoose.connection;
