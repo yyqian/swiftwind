@@ -59,7 +59,7 @@ $(document).ready(function () {
         type: 'put',
         data: data,
         success: function (res) {
-          location.href = "/imagine";
+          location.href = "/swiftwind";
         }
       });
     } else {
@@ -68,7 +68,7 @@ $(document).ready(function () {
         type: 'post',
         data: data,
         success: function (res) {
-          location.href = "/imagine";
+          location.href = "/swiftwind";
         }
       });
     }
@@ -78,7 +78,7 @@ $(document).ready(function () {
       url: "/api/post/" + $("#post-id").text(),
       type: 'DELETE',
       success: function (res) {
-        location.href = "/imagine";
+        location.href = "/swiftwind";
       }
     });
   });

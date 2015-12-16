@@ -26,7 +26,7 @@ module.exports = {
       layout: 'public/template'
     });
   },
-  imagineIndex: function *() {
+  swiftwindIndex: function *() {
     let posts = yield Post.find({}, {
       _id: 0,
       title: 1,
@@ -40,7 +40,7 @@ module.exports = {
       layout: 'private/template'
     });
   },
-  imaginePost: function *(id) {
+  swiftwindPost: function *(id) {
     let post = yield Post.findOne({pid: id}, {_id: 0, __v: 0}).exec();
     let posts = yield Post.find({}, {
       _id: 0,
@@ -56,7 +56,7 @@ module.exports = {
       layout: 'private/template'
     });
   },
-  imaginePostEditor: function *(id) {
+  swiftwindPostEditor: function *(id) {
     if ('new' === id) {
       yield this.render('private/post', {
         site: config.site,

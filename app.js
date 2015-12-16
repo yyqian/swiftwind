@@ -29,7 +29,7 @@ let authenticate = require('./middlewares/AuthMiddleware');
 
 // configs
 let config = require('./config');
-app.name = config.app.name || 'imagine';
+app.name = config.app.name || 'swiftwind';
 app.env = process.env.NODE_ENV || 'development';
 const port = config.app.port || process.env.PORT || 3000;
 const dbUrl = config.db[app.env];
@@ -81,10 +81,10 @@ app.use(route.post('/login', AuthController.login));
 app.use(route.get('/logout', AuthController.logout));
 // Require authentication for now
 app.use(authenticate());
-app.use(route.get('/imagine', PageController.imagineIndex));
-app.use(route.get('/imagine/post', PageController.imagineIndex));
-app.use(route.get('/imagine/post/:id', PageController.imaginePost));
-app.use(route.get('/imagine/post-editor/:id', PageController.imaginePostEditor));
+app.use(route.get('/swiftwind', PageController.swiftwindIndex));
+app.use(route.get('/swiftwind/post', PageController.swiftwindIndex));
+app.use(route.get('/swiftwind/post/:id', PageController.swiftwindPost));
+app.use(route.get('/swiftwind/post-editor/:id', PageController.swiftwindPostEditor));
 // API, used for ajax request
 app.use(route.get('/api/post', PostController.list));
 app.use(route.get('/api/post/:id', PostController.read));

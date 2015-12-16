@@ -1,4 +1,4 @@
-# imagine
+# Swiftwind
 
 A blogging paltform. Based on koa, es6.
 
@@ -6,7 +6,7 @@ It's fully functional right now. You can checkout my own [blog](http://yyqian.co
 
 Pre-requisite:
 
-- Node.js v4.0.0
+- Node.js v4.2
 - MongoDB 3.0
 
 TODO:

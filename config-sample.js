@@ -1,12 +1,12 @@
 'use strict';
 module.exports = {
   site: {
-    name: 'IMAGINE',
+    name: 'Swiftwind',
     url: '127.0.0.1',
-    copyright: '© 2015 imagine',
-    username: 'imagine',
-    password: 'imagine',
-    secret: 'imagine',
+    copyright: '© 2015 swiftwind',
+    username: 'swiftwind',
+    password: 'swiftwind',
+    secret: 'swiftwind',
     links: [{
       name: '博客',
       url: '/post'
@@ -25,12 +25,12 @@ module.exports = {
     }]
   },
   app: {
-    name: 'imagine',
+    name: 'swiftwind',
     port: 3000
   },
   db: {
-    production: 'mongodb://localhost/imagine',
-    development: 'mongodb://localhost/imagine_dev',
-    test: 'mongodb://localhost/imagine_test'
+    production: 'mongodb://localhost/swiftwind',
+    development: 'mongodb://localhost/swiftwind_dev',
+    test: 'mongodb://localhost/swiftwind_test'
   }
 };

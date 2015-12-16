@@ -1,5 +1,5 @@
 {
-  "name": "imagine",
+  "name": "swiftwind",
   "version": "1.0.0",
   "description": "A blogging paltform. Based on koa, es6.",
   "main": "app.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yyqian/imagine.git"
+    "url": "git+https://github.com/yyqian/swiftwind.git"
   },
   "author": "Yinyin Qian",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/yyqian/imagine/issues"
+    "url": "https://github.com/yyqian/swiftwind/issues"
   },
-  "homepage": "https://github.com/yyqian/imagine#readme",
+  "homepage": "https://github.com/yyqian/swiftwind#readme",
   "dependencies": {
     "koa": "^1.1.2",
     "koa-bodyparser": "^2.0.1",
