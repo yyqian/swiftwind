@@ -2,7 +2,7 @@
 
 A blogging paltform. Based on koa, es6.
 
-It's fully functional right now. You can checkout my own [blog](http://yyqian.com/).
+*This project is deprecated.*
 
 Pre-requisite:
 
